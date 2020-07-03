@@ -17,15 +17,19 @@ RUN mv phpMyAdmin-4.9.5-english /var/www/html/phpmyadmin
 # copy configuration files
 COPY ./srcs/setup.sql /tmp/
 COPY ./srcs/nginx.conf /etc/nginx/sites-available/localhost
-COPY ./srcs/config.inc.php /var/www/html/phpmyadmin/config.inc.php
+COPY ./srcs/config.inc.php /var/www/html/phpmyadmin
 
 # mysql setup
 RUN service mysql start
 #RUN mysql -u root mysql < /tmp/setup.sql
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Paris/O=42/CN=sdunckel' -keyout /etc/ssl/certs/localhost.key -out /etc/ssl/certs/localhost.crt
+
 # nginx setup
 RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
+
+RUN chown -R www-data:www-data *
+RUN chmod 755 -R *
 
 EXPOSE 80 443
 
