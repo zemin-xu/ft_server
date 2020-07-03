@@ -14,7 +14,8 @@ docker container run [OPTIONS] IMAGE [COMMAND] [ARG...]
 
 docker stop [OPTIONS] CONTAINER [CONTAINER...]
 ex: docker stop my_container
-// delete all
+
+// delete all container
 docker system prune
 
 docker start test
@@ -23,8 +24,11 @@ docker exec -it test bash
 // build image from dockerfile
 docker build -t ft_server .
 
-// run container from this image
+// run a container from this image
 docker run -it -p 80:80 -p 443:443 ft_server
+
+// remove all images
+docker rmi $(docker images -a -q)
 
 ### tutorial LEMP
 https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mariadb-php-lemp-stack-on-debian-10
