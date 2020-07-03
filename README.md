@@ -19,3 +19,12 @@ docker system prune
 
 docker start test
 docker exec -it test bash
+
+// build image from dockerfile
+docker build -t ft_server .
+
+// run container from this image
+docker run -it -p 80:80 -p 443:443 ft_server
+
+### tutorial LEMP
+https://www.digitalocean.com/community/tutorials/how-to-install-linux-nginx-mariadb-php-lemp-stack-on-debian-10
