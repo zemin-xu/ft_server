@@ -32,5 +32,10 @@ WORKDIR /var/www/html/
 RUN chown -R www-data:www-data *
 RUN chmod 755 -R *
 
+# start service
+RUN service php7.3-fpm start
+RUN service nginx start
+RUN service mysql start
+
 EXPOSE 80 443
 
