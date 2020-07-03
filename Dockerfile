@@ -28,6 +28,7 @@ RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Par
 # nginx setup
 RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
 
+WORKDIR /var/www/html/
 RUN chown -R www-data:www-data *
 RUN chmod 755 -R *
 
