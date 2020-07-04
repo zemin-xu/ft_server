@@ -33,7 +33,7 @@ RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhos
 RUN ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
 
 # mysql setup
-#RUN mysql -u root mysql < /tmp/setup.sql
+RUN mysql -u root mysql < /tmp/setup.sql
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Paris/O=42/CN=sdunckel' -keyout /etc/ssl/certs/localhost.key -out /etc/ssl/certs/localhost.crt
 
@@ -42,10 +42,10 @@ WORKDIR /var/www/html/
 RUN chown -R www-data:www-data *
 RUN chmod 755 -R *
 
+
+EXPOSE 80 443
+
 # start service
 RUN service php7.3-fpm start
 RUN service nginx start
 RUN service mysql start
-
-EXPOSE 80 443
-
