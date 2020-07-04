@@ -33,7 +33,7 @@ RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhos
 RUN ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
 
 # mysql setup
-RUN mysql -u root mysql < /tmp/setup.sql
+RUN mysql -u root wordpressDB < /tmp/setup.sql
 
 RUN openssl req -x509 -nodes -days 365 -newkey rsa:2048 -subj '/C=FR/ST=75/L=Paris/O=42/CN=sdunckel' -keyout /etc/ssl/certs/localhost.key -out /etc/ssl/certs/localhost.crt
 
