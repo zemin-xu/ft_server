@@ -1,12 +1,12 @@
 CREATE DATABASE wordpressDB;
 
-CREATE USER 'root'@'localhost' identified by 'password';
+CREATE USER 'root'@'localhost' IDENTIFIED BY 'password';
 
 GRANT ALL PRIVILEGES ON wordpressDB.* TO 'root'@'localhost';
 
 FLUSH PRIVILEGES;
 
-CREATE USER 'zemin'@'localhost' identified by '123456';
+CREATE USER 'zemin'@'localhost' IDENTIFIED BY 'pass';
 
 GRANT ALL PRIVILEGES ON wordpressDB.* TO 'zemin'@'localhost';
 
