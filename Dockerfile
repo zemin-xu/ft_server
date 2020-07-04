@@ -24,11 +24,13 @@ RUN mv wordpress /var/www/html/wordpress
 # copy configuration files
 COPY ./srcs/setup.sql /tmp/
 COPY ./srcs/nginx.conf /etc/nginx/sites-available/localhost
+COPY ./srcs/wordpress.conf /etc/nginx/sites-available/wordpress.conf
 COPY ./srcs/config.inc.php /var/www/html/phpmyadmin
 COPY ./srcs/wp-config.php /var/www/html/wordpress/wp-config.php
 
 # nginx setup
 RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
+RUN ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
 
 # mysql setup
 #RUN mysql -u root mysql < /tmp/setup.sql
