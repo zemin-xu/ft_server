@@ -1,3 +1,4 @@
+# pull debian buster image
 FROM debian:buster
 
 # install & update packages
@@ -18,14 +19,12 @@ RUN mv phpMyAdmin-5.0.2-english /var/www/html/phpmyadmin
 COPY ./srcs/setup.sql /tmp/
 COPY ./srcs/restart_services.sh /tmp/
 COPY ./srcs/nginx.conf /etc/nginx/sites-available/localhost
-COPY ./srcs/wordpress.conf /etc/nginx/sites-available/wordpress.conf
 COPY ./srcs/config.inc.php /var/www/html/phpmyadmin
 COPY ./srcs/wordpress /var/www/html/wordpress
 COPY ./srcs/wp-config.php /var/www/html/wordpress/wp-config.php
 
 # nginx setup
 RUN ln -s /etc/nginx/sites-available/localhost /etc/nginx/sites-enabled/localhost
-RUN ln -s /etc/nginx/sites-available/wordpress.conf /etc/nginx/sites-enabled/
 
 # mysql setup
 RUN service mysql start && mysql -u root mysql < /tmp/setup.sql
@@ -37,6 +36,7 @@ WORKDIR /var/www/html/
 RUN chown -R www-data:www-data *
 RUN chmod 755 -R *
 
-#RUN bash /tmp/restart_services.sh
+# start services
+RUN bash /tmp/restart_services.sh
 
 EXPOSE 80 443
