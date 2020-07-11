@@ -21,6 +21,7 @@ COPY ./srcs/restart_services.sh /tmp/
 COPY ./srcs/nginx.conf /etc/nginx/sites-available/localhost
 COPY ./srcs/config.inc.php /var/www/html/phpmyadmin
 COPY ./srcs/wordpress /var/www/html/wordpress
+COPY ./srcs/files /var/www/html/files
 COPY ./srcs/wp-config.php /var/www/html/wordpress/wp-config.php
 
 # nginx setup
@@ -37,6 +38,6 @@ RUN chown -R www-data:www-data *
 RUN chmod 755 -R *
 
 # start services
-RUN bash /tmp/restart_services.sh
+CMD bash /tmp/restart_services.sh
 
 EXPOSE 80 443
